@@ -1,6 +1,7 @@
 class Solution {
 public:
     int maxArea(vector<int>& height) {
+//brute force method
         // int h;
         // int w;
         // int maxWater = 0;
@@ -19,7 +20,7 @@ public:
         //     }
         // }
         // return maxWater;
-
+//two pointermethod
         int l = 0;
         int n = height.size();
         int r = n-1;
