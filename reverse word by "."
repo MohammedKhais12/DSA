@@ -1,0 +1,31 @@
+class Solution {
+  public:
+    string reverseWords(string &s) {
+        vector<string> ch;
+        string word = "";
+        string sen = "";
+
+        // Split by '.'
+        for(char c : s){
+            if(c == '.'){
+                if(!word.empty()) {   // only push non-empty words
+                    ch.push_back(word);
+                    word = "";
+                }
+            } else {
+                word += c;
+            }
+        }
+        if(!word.empty()) ch.push_back(word); // push last word if not empty
+
+        // Reverse and join
+        for(int i = ch.size()-1; i >= 0; i--){
+            sen += ch[i];
+            if(i != 0){
+                sen += '.';
+            }
+        }
+
+        return sen;
+    }
+};
