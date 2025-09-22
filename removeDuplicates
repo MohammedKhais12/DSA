@@ -1,0 +1,17 @@
+class Solution {
+  public:
+
+    string removeDups(string &s) {
+        // Your code goes here
+        vector <int> freq(26, 0);
+        string result = "";
+        
+        for(char c : s){
+            if(freq[c - 'a']==0){
+                result += c;
+                freq[c-'a']=1;
+            }
+        }
+        return result;
+    }
+};
