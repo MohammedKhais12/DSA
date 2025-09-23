@@ -1,0 +1,33 @@
+class Solution {
+  public:
+    int maxWater(vector<int> &arr) {
+        int n = arr.size();
+        int ans = 0;
+
+        // pass 1: left to right
+        int i = 0, middle = 0;
+        for (int k = 1; k < n; k++) {
+            if (arr[k] < arr[i]) {
+                middle += arr[k];
+            } else {
+                ans += (k - i - 1) * arr[i] - middle;
+                middle = 0;
+                i = k;
+            }
+        }
+        // pass 2: right to left
+        int j = n - 1; 
+        middle = 0;
+        for (int k = n - 2; k >= i; k--) {
+            if (arr[k] < arr[j]) {
+                middle += arr[k];
+            } else {
+                ans += (j - k - 1) * arr[j] - middle;
+                middle = 0;
+                j = k;
+            }
+        }
+
+        return ans;
+    }
+};
