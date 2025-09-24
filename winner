@@ -1,0 +1,29 @@
+class Solution {
+  public:
+    vector<string> winner(string arr[], int n) {
+        unordered_map<string,int> freq;
+
+        // Count votes
+        for(int i = 0; i < n; i++){
+            freq[arr[i]]++;
+        }
+
+        string dup = arr[0];
+        int dupFreq = freq[dup];
+
+        for(int i = 1; i < n; i++){
+            if(freq[arr[i]] > dupFreq){
+                dup = arr[i];
+                dupFreq = freq[arr[i]];
+            }
+            else if(freq[arr[i]] == dupFreq){
+                if(arr[i] < dup){  // pick lexicographically smaller
+                    dup = arr[i];
+                    dupFreq = freq[arr[i]];
+                }
+            }
+        }
+
+        return {dup, to_string(dupFreq)};
+    }
+};
