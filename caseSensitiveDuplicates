@@ -1,0 +1,28 @@
+class Solution {
+  public:
+    string removeDuplicates(string &s) {
+        // code here
+        vector <int> vec(52, 0);
+        string str = "";
+        
+        for(char c : s){
+            if(islower(c)){
+                vec[c-'a']++;
+            }
+            else if (isupper(c)){
+                vec[c-'A'+26]++;
+            }
+        }
+        for(char c : s){
+            if(islower(c) && vec[c-'a']!=0){
+                str += c;
+                vec[c-'a'] = 0;
+            }
+            else if(isupper(c) && vec[c-'A'+26]!=0){
+                str += c;
+                vec[c-'A'+26] = 0;
+            }
+        }
+        return str;
+    }
+};
