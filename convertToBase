@@ -1,0 +1,21 @@
+class Solution {
+public:
+    string convertToBase7(int num) {
+        if (num == 0) return "0";   
+
+        bool isNegative = num < 0;
+        int rem = abs(num);
+        string str = "";
+
+        while (rem > 0) {
+            int dig = rem % 7;
+            rem /= 7;
+            str += to_string(dig);
+        }
+
+        reverse(str.begin(), str.end());  
+
+        if (isNegative) str = "-" + str;  
+        return str;
+    }
+};
