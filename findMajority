@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    vector<int> findMajority(vector<int>& arr) {
+        vector<int> result;
+        int n = arr.size();
+        if (n == 0) return result;
+
+        sort(arr.begin(), arr.end());
+
+        int count = 1;
+        for (int i = 1; i < n; i++) {
+            if (arr[i] == arr[i-1]) {
+                count++;
+            } else {
+                if (count > n/3) result.push_back(arr[i-1]);
+                count = 1;
+            }
+        }
+        // Check last element group
+        if (count > n/3) result.push_back(arr[n-1]);
+
+        return result;  // already sorted
+    }
+};
