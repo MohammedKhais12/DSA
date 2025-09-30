@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    bool fascinating(int n) {
+        // Concatenate n, 2*n, and 3*n as string
+        string s = to_string(n) + to_string(n*2) + to_string(n*3);
+        
+        // If length is not 9, can't be fascinating
+        if (s.size() != 9) return false;
+        
+        // Sort and check if it is exactly "123456789"
+        sort(s.begin(), s.end());
+        
+        return s == "123456789";
+    }
+};
