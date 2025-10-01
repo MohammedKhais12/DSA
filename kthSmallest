@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    // arr : given array
+    // k : find kth smallest element and return using this function
+    int kthSmallest(vector<int> &arr, int k) {
+        // code here
+        int maxVal = *max_element(arr.begin(), arr.end());
+        vector<int> freq(maxVal+1, 0);
+        
+        for(int n : arr){
+            freq[n]++;
+        }
+        
+        int count = 0;
+        for (int i = 1; i <= maxVal; i++) {
+            count += freq[i];
+            if (count >= k) {
+                return i;
+            }
+        }
+        return -1;
+    }
+};
