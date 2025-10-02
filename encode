@@ -1,0 +1,25 @@
+class Solution {
+  public:
+    string encode(string s) {
+        // code here
+        int count = 1;
+        string str = "";
+        str += s[0];
+        string countToString;
+        
+        for(int i =1; i<s.size(); i++){
+            if(s[i-1]==s[i]){
+                count++;
+            }
+            else{
+                countToString = to_string(count);
+                str += countToString;
+                count = 1;
+                str += s[i];
+            }
+        }
+        countToString = to_string(count);
+        str += countToString;
+        return str;
+    }
+};
