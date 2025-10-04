@@ -1,0 +1,15 @@
+class Solution {
+public:
+    string toLowerCase(string s) {
+        string str = "";
+        for(char c : s){
+            if(isupper(c)){
+                str += tolower(c);
+            }
+            else{d
+                str += c;
+            }
+        }
+        return str;
+    }
+};
