@@ -1,0 +1,19 @@
+class Solution {
+  public:
+
+    string printString(string s, char ch, int count) {
+        // Your code goes here
+        string str = "";
+        int inCount = 0;
+        
+        for(int i =0; i<s.size()-1; i++){
+            if(s[i]==ch && inCount<count){
+                inCount++;
+            }
+            if(inCount==count){
+                str += s[i+1];
+            }
+        }
+        return str;
+    }
+};
