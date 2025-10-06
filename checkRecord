@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool checkRecord(string s) {
+        int countA = 0;    // total 'A's
+        int countL = 0;    // consecutive 'L's
+
+        for (char c : s) {
+            if (c == 'A') {
+                countA++;
+                if (countA >= 2) return false; // 2 or more absences
+            }
+
+            if (c == 'L') {
+                countL++;
+                if (countL >= 3) return false; // 3 consecutive L's
+            } else {
+                countL = 0; // reset consecutive L counter
+            }
+        }
+
+        return true; // no rule broken
+    }
+};
