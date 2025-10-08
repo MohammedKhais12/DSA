@@ -1,0 +1,42 @@
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) {
+        unordered_set<char> firstRow = {'q','w','e','r','t','y','u','i','o','p',
+                                'Q','W','E','R','T','Y','U','I','O','P'};
+
+        unordered_set<char> secondRow = {'a','s','d','f','g','h','j','k','l',
+                                'A','S','D','F','G','H','J','K','L'};
+
+        unordered_set<char> thirdRow = {'z','x','c','v','b','n','m',
+                                'Z','X','C','V','B','N','M'};
+
+        vector<string> vec;
+        unordered_set <char>* rowName;
+        int count = 0;
+        int subSize;
+
+        for(int i = 0; i<words.size(); i++){
+            if(firstRow.count(words[i][0])){
+                rowName = &firstRow;
+            }
+            else if(secondRow.count(words[i][0])){
+                rowName = &secondRow;
+            }
+            else if(thirdRow.count(words[i][0])){
+                rowName = &thirdRow;
+            }
+            subSize = words[i].size();
+            bool valid = true;
+            for(int j =1; j<words[i].size(); j++){
+                if(rowName->count(words[i][j])==0){
+                    valid = false;
+                    break;
+                }
+            }
+            if(valid){
+                vec.push_back(words[i]);
+            }
+        }
+    return vec;
+    }
+};
