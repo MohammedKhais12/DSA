@@ -1,0 +1,22 @@
+string transform(string S) {
+    string result = "";
+    int n = S.size();
+    if (n == 0) return result;
+
+    int count = 1;
+    for (int i = 1; i < n; i++) {
+        if (tolower(S[i]) == tolower(S[i - 1])) {
+            count++;
+        } else {
+            result += to_string(count);
+            result += tolower(S[i - 1]);
+            count = 1;
+        }
+    }
+
+    // Add the last group
+    result += to_string(count);
+    result += tolower(S[n - 1]);
+
+    return result;
+}
