@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> calculateSpan(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> span(n);
+        stack<int> st; // stores indices of previous higher prices
+
+        for (int i = 0; i < n; i++) {
+            // Pop all previous prices smaller or equal to current
+            while (!st.empty() && arr[st.top()] <= arr[i]) {
+                st.pop();
+            }
+
+            // If stack empty → all previous prices are smaller
+            if (st.empty()) {
+                span[i] = i + 1;
+            } else {
+                span[i] = i - st.top();
+            }
+
+            st.push(i); // Push current index
+        }
+
+        return span;
+    }
+};
