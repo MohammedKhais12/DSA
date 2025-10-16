@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    int modularNode(Node *head, int k) {
+        // Code here
+        int i = 1;
+        int data = -1;
+        Node* temp = head;
+        while(temp!=NULL){
+            if(i%k==0){
+                data = temp->data;
+            }
+            i++;
+            temp = temp->next;
+        }
+        return data;
+    }
+};
