@@ -1,0 +1,14 @@
+class Solution {
+  public:
+    vector<int> displayList(Node *head) {
+        // code here
+        vector <int> vec;
+        Node* temp = head;
+        while(temp!=NULL){
+            vec.push_back(temp->data);
+            temp = temp->next;
+        }
+        // vec.push_back(temp->data);
+        return vec;
+    }
+};
