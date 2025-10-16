@@ -1,0 +1,60 @@
+class Node {
+  public:
+    int data;
+    Node* next;
+
+    Node(int new_data) {
+        data = new_data;
+        next = nullptr;
+    }
+};
+
+class myQueue {
+  private:
+    Node* front;  // points to front of queue
+    Node* rear;   // points to rear of queue
+    int count;    // track size
+
+  public:
+    myQueue() {
+        front = rear = nullptr;
+        count = 0;
+    }
+
+    bool isEmpty() {
+        return (front == nullptr);
+    }
+
+    void enqueue(int x) {
+        Node* newNode = new Node(x);
+        if (rear == nullptr) {
+            // first element
+            front = rear = newNode;
+        } else {
+            rear->next = newNode;
+            rear = newNode;
+        }
+        count++;
+    }
+
+    void dequeue() {
+        if (isEmpty()) return;
+
+        Node* temp = front;
+        front = front->next;
+
+        delete temp;
+        count--;
+
+        if (front == nullptr) rear = nullptr;  // queue became empty
+    }
+
+    int getFront() {
+        if (isEmpty()) return -1;
+        return front->data;
+    }
+
+    int size() {
+        return count;
+    }
+};
