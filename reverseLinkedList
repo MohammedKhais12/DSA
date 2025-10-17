@@ -1,0 +1,17 @@
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = nullptr;       // previous node
+        ListNode* curr = head;          // current node
+        ListNode* nextNode = nullptr;   // to temporarily store next node
+
+        while (curr != nullptr) {
+            nextNode = curr->next;  // save next node
+            curr->next = prev;      // reverse the link
+            prev = curr;            // move prev forward
+            curr = nextNode;        // move curr forward
+        }
+
+        return prev; 
+    }
+};
