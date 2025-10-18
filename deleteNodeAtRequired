@@ -1,0 +1,30 @@
+/*
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int data) {
+        this->data = data;
+        this->next = nullptr;
+    }
+};
+*/
+class Solution {
+  public:
+    Node* deleteNode(Node* head, int x) {
+        // code here
+        if(x==1){
+            head = head->next;
+            return head;
+        }
+        Node* curr = head;
+        Node* nxt = head->next;
+        for(int i = 2; i<x; i++){
+            curr = curr->next;
+            nxt = nxt->next;
+        }
+        curr->next = nxt->next;
+        return head;
+    }
+};
