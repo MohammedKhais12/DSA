@@ -20,8 +20,8 @@ public:
         }
         if(count==n){
             ListNode* last = head->next;
-            delete(last);
-            return head->next;
+            delete(head);
+            return last;
         }
         int res = count - n + 1 ;
         temp = head;
