@@ -1,0 +1,39 @@
+#include <stack>
+using namespace std;
+
+class myStack {
+private:
+    stack<int> st;   // member variable
+
+public:
+    myStack() {
+        // nothing special needed here
+    }
+
+    bool isEmpty() {
+        // check if the stack is empty
+        return st.empty();
+    }
+
+    void push(int x) {
+        // Adds an element x at the top of the stack
+        st.push(x);
+    }
+
+    void pop() {
+        // Removes the top element of the stack (only if not empty)
+        if (!st.empty()) st.pop();
+    }
+
+    int peek() {
+        // Returns the top element of the stack
+        // If stack is empty, return -1
+        if (!st.empty()) return st.top();
+        return -1;
+    }
+
+    int size() {
+        // Returns the current size of the stack
+        return st.size();
+    }
+};
