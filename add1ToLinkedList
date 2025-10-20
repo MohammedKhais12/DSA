@@ -1,0 +1,46 @@
+class Solution {
+public:
+    ListNode *addOne(ListNode *head) {
+        if (head == NULL) return new ListNode(1);
+
+        long long sum = 0;
+        ListNode* temp = head;
+
+        // Step 1: form number
+        while (temp != NULL) {
+            sum = sum * 10 + temp->val;
+            temp = temp->next;
+        }
+
+        // Step 2: add 1
+        sum = sum + 1;
+
+        // Step 3: split into digits
+        vector<int> digits;
+        while (sum > 0) {
+            digits.push_back(sum % 10);
+            sum /= 10;
+        }
+        reverse(digits.begin(), digits.end());
+
+        // Step 4: rewrite values into existing list
+        temp = head;
+        int i = 0;
+        while (temp != NULL && i < digits.size()) {
+            temp->val = digits[i];
+            temp = temp->next;
+            i++;
+        }
+
+        // Step 5: if extra digit(s) remain, append new nodes
+        while (i < digits.size()) {
+            ListNode* newNode = new ListNode(digits[i]);
+            ListNode* tail = head;
+            while (tail->next != NULL) tail = tail->next;
+            tail->next = newNode;
+            i++;
+        }
+
+        return head;
+    }
+};
