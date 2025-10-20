@@ -1,0 +1,31 @@
+
+class Solution {
+public:
+    vector<string> findRestaurant(vector<string>& list1, vector<string>& list2) {
+        vector <string> vec;
+        int I;
+        int J;
+        int diff = INT_MAX;
+        string str;
+        for(int i =0; i<list1.size(); i++){
+            for(int j=0; j<list2.size(); j++){
+                if(list1[i]==list2[j]){
+                    I = i;
+                    J = j;
+                    if(i+j<diff){
+                        diff = i+j;
+                        vec.clear();
+                        str = list1[i];
+                        vec.push_back(str);
+                    }
+                    else if (i+j==diff){
+                        str = list1[i];
+                        vec.push_back(str);
+                    }
+                }
+            }
+        }
+        
+        return vec;
+    }
+};
