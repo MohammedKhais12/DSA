@@ -1,0 +1,33 @@
+class Solution {
+  public:
+    bool findTriplets(vector<int> &arr) {
+        // code here
+        int mid = arr.size()/2;
+        int num;
+        int n = arr.size()-1;
+        int sum;
+        int j, k;
+        sort(arr.begin(), arr.end());
+        if(arr.size()<3){
+            return false;
+        }
+        for(int i=0; i<arr.size()-2; i++){
+            num = arr[i];
+            j = i+1;
+            k = n;
+            while(j<k){
+                sum = arr[i]+arr[j]+arr[k];
+                if(sum==0){
+                    return true;
+                }
+                else if(sum>0){
+                    k--;
+                }
+                else if(sum<0){
+                    j++;
+                }
+            }
+        }
+        return false;
+    }
+};
