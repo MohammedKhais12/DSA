@@ -1,0 +1,71 @@
+/*
+class Node {
+  public:
+    int data;
+    Node* next;
+    Node(int x) {
+        data = x;
+        next = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+    Node* addTwoLists(Node* head1, Node* head2) {
+        int carry = 0;
+        int sum;
+        Node* temp1 = head1;
+        Node* temp2 = head2;
+        vector<int> vec1;
+        vector<int> vec2;
+        vector<int> result;
+
+        // store digits of both linked lists
+        while (temp1 != NULL) {
+            vec1.push_back(temp1->data);
+            temp1 = temp1->next;
+        }
+        while (temp2 != NULL) {
+            vec2.push_back(temp2->data);
+            temp2 = temp2->next;
+        }
+
+        int i = vec1.size() - 1;
+        int j = vec2.size() - 1;
+
+        // add from end (last digits first)
+        while (i >= 0 || j >= 0 || carry > 0) {
+            int a = (i >= 0) ? vec1[i] : 0;
+            int b = (j >= 0) ? vec2[j] : 0;
+
+            sum = a + b + carry;
+            carry = sum / 10;
+            result.push_back(sum % 10);
+
+            i--;
+            j--;
+        }
+
+        // reverse the result (since we added from the back)
+        reverse(result.begin(), result.end());
+
+        // build the result linked list
+        Node* newHead = new Node(0);
+        Node* newTemp = newHead;
+        int zero = 0;
+
+        for (int val : result) {
+            zero += val;
+            if(zero==0){
+                zero = 0;
+            }
+            else{
+                newTemp->next = new Node(val);
+                newTemp = newTemp->next;
+            }
+        }
+
+        return newHead->next;
+    }
+};
