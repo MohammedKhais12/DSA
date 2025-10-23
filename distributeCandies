@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int distributeCandies(vector<int>& candyType) {
+        // Use a set to count unique candy types
+        unordered_set<int> uniqueTypes(candyType.begin(), candyType.end());
+        
+        // Alice can eat at most n / 2 candies
+        int maxCandies = candyType.size() / 2;
+        
+        // Maximum different types she can eat
+        return min((int)uniqueTypes.size(), maxCandies);
+    }
+};
