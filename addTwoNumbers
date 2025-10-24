@@ -1,0 +1,61 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* temp1 = l1;
+        ListNode* temp2 = l2;
+        ListNode* newNode = new ListNode(0);   // dummy node
+        ListNode* newHead = newNode;
+        ListNode* newTemp = newNode;
+
+        long long num1 = 0, num2 = 0;
+        long long place = 1;
+
+        // 1️⃣ First while — build number from l1
+        while (temp1 != NULL) {
+            num1 += (temp1->val * place);
+            place *= 10;
+            temp1 = temp1->next;
+        }
+
+        // reset place for second number
+        place = 1;
+
+        // 2️⃣ Second while — build number from l2
+        while (temp2 != NULL) {
+            num2 += (temp2->val * place);
+            place *= 10;
+            temp2 = temp2->next;
+        }
+
+        // sum both numbers
+        long long sum = num1 + num2;
+
+        // special case when sum = 0
+        if (sum == 0)
+            return new ListNode(0);
+
+        // 3️⃣ Third while — build linked list from sum
+        while (sum > 0) {
+            int dup = sum % 10;
+            sum = sum / 10;
+
+            // create new node for digit
+            ListNode* temp = new ListNode(dup);
+            newTemp->next = temp;
+            newTemp = newTemp->next;
+        }
+
+        return newHead->next;  // skip dummy
+    }
+};
