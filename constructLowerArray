@@ -1,0 +1,49 @@
+class Solution {
+public:
+    vector<int> constructLowerArray(vector<int> &arr) {
+        int n = arr.size();
+        vector<int> ans(n, 0);
+        vector<pair<int, int>> v; // {value, index}
+
+        for (int i = 0; i < n; i++)
+            v.push_back({arr[i], i});
+
+        mergeSort(v, 0, n - 1, ans);
+        return ans;
+    }
+
+private:
+    void mergeSort(vector<pair<int, int>> &v, int l, int r, vector<int> &ans) {
+        if (l >= r) return;
+        int mid = (l + r) / 2;
+        mergeSort(v, l, mid, ans);
+        mergeSort(v, mid + 1, r, ans);
+        merge(v, l, mid, r, ans);
+    }
+
+    void merge(vector<pair<int, int>> &v, int l, int mid, int r, vector<int> &ans) {
+        vector<pair<int, int>> temp;
+        int i = l, j = mid + 1;
+        int rightSmaller = 0;
+
+        while (i <= mid && j <= r) {
+            if (v[i].first <= v[j].first) {
+                ans[v[i].second] += rightSmaller;
+                temp.push_back(v[i++]);
+            } else {
+                rightSmaller++;
+                temp.push_back(v[j++]);
+            }
+        }
+
+        while (i <= mid) {
+            ans[v[i].second] += rightSmaller;
+            temp.push_back(v[i++]);
+        }
+
+        while (j <= r) temp.push_back(v[j++]);
+
+        for (int k = 0; k < temp.size(); k++)
+            v[l + k] = temp[k];
+    }
+};
