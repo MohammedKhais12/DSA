@@ -1,0 +1,31 @@
+class Solution {
+public:
+int binarySearch(vector<int>& vec, int st, int end, int target){
+    if(st<=end){
+        int mid = st + (end - st) / 2;
+        if(vec[mid]==target){
+            return mid;
+        }
+        else if(vec[mid]>target){
+           
+            return binarySearch(vec, st, mid-1, target);
+        }
+
+        else{
+            
+            return binarySearch(vec, mid+1, end, target);
+        }
+        
+    }
+    return -1; 
+}
+     
+
+    int search(vector<int>& nums, int target) {
+        int st = 0;
+        int end = nums.size()-1;
+
+        return binarySearch(nums, st, end, target);
+        }
+    
+};
