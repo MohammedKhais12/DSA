@@ -1,0 +1,22 @@
+class Solution {
+  public:
+    vector<long long> jugglerSequence(long long n) {
+        vector<long long> vec;
+        vec.push_back(n);
+
+        // base case
+        if (n == 1)
+            return vec;
+
+        // recursive step
+        if (n % 2 == 0) {
+            vector<long long> temp = jugglerSequence(floor(sqrt(n)));
+            vec.insert(vec.end(), temp.begin(), temp.end());
+        } else {
+            vector<long long> temp = jugglerSequence(floor(pow(n, 1.5)));
+            vec.insert(vec.end(), temp.begin(), temp.end());
+        }
+
+        return vec;
+    }
+};
