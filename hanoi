@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    void hanoi(int N, int from, int to, int aux, int &count, int n, vector<int> &res) {
+        if (N == 0 || !res.empty()) return;
+
+        // Move top N-1 disks from 'from' → 'aux' using 'to'
+        hanoi(N - 1, from, aux, to, count, n, res);
+
+        // This move
+        count++;
+        if (count == n) {
+            res = {from, to};
+            return;
+        }
+
+        // Move N-1 disks from 'aux' → 'to' using 'from'
+        hanoi(N - 1, aux, to, from, count, n, res);
+    }
+
+    vector<int> shiftPile(int N, int n) {
+        vector<int> res;
+        int count = 0;
+        hanoi(N, 1, 3, 2, count, n, res);
+        return res;
+    }
+};
