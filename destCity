@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    string destCity(vector<vector<string>>& paths) {
+        unordered_map<string, int> freq;
+
+        // Step 1: Count how many times each city appears as a starting city
+        for (auto &p : paths) {
+            freq[p[0]]++;  // p[0] = starting city
+        }
+
+        // Step 2: Find the city that never appears as a starting city
+        for (auto &p : paths) {
+            string destination = p[1]; // p[1] = destination city
+            if (freq.find(destination) == freq.end()) {
+                // If destination not found in freq, it means no outgoing path from it
+                return destination;
+            }
+        }
+
+        return ""; // fallback, though problem guarantees one destination
+    }
+};
