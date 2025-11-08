@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    int findSum(vector<int>& arr) {
+        // use unordered_set to store distinct elements
+        unordered_set<int> s;
+
+        for (int x : arr)
+            s.insert(x); // duplicates automatically ignored
+
+        int sum = 0;
+        for (int x : s)
+            sum += x;
+
+        return sum;
+    }
+};
