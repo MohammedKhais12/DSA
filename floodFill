@@ -1,0 +1,30 @@
+class Solution {
+public:
+    void dfs(vector<vector<int>>& image, int i, int j, int oldColor, int newColor) {
+        int m = image.size();
+        int n = image[0].size();
+
+        // base case: out of bounds or color doesn't match
+        if (i < 0 || j < 0 || i >= m || j >= n || image[i][j] != oldColor)
+            return;
+
+        // change the color
+        image[i][j] = newColor;
+
+        // move in all 4 directions
+        dfs(image, i + 1, j, oldColor, newColor); // down
+        dfs(image, i - 1, j, oldColor, newColor); // up
+        dfs(image, i, j + 1, oldColor, newColor); // right
+        dfs(image, i, j - 1, oldColor, newColor); // left
+    }
+
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        int oldColor = image[sr][sc];
+
+        // if the new color is same as old color, no need to fill
+        if (oldColor == color) return image;
+
+        dfs(image, sr, sc, oldColor, color);
+        return image;
+    }
+};
