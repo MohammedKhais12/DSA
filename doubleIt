@@ -1,0 +1,35 @@
+class Solution {
+public:
+    ListNode* reverse(ListNode* head) {
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        while (curr) {
+            ListNode* nxt = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nxt;
+        }
+        return prev;
+    }
+
+    ListNode* doubleIt(ListNode* head) {
+        head = reverse(head);
+        ListNode* temp = head;
+        int carry = 0;
+
+        while (temp) {
+            int val = temp->val * 2 + carry;
+            temp->val = val % 10;
+            carry = val / 10;
+            if (temp->next == nullptr) break; // don’t create new node yet
+            temp = temp->next;
+        }
+
+        // If carry remains after the loop, add a new node
+        if (carry > 0) {
+            temp->next = new ListNode(carry);
+        }
+
+        return reverse(head);
+    }
+};
