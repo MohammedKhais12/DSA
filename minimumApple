@@ -1,0 +1,13 @@
+class Solution {
+  public:
+    int minimumApple(vector<int>& arr) {
+        unordered_set<int> unique;  // to store unique person IDs
+        
+        for (int id : arr) {
+            unique.insert(id);  // add each person ID
+        }
+        
+        // number of unique persons = minimum apples required
+        return unique.size();
+    }
+};
