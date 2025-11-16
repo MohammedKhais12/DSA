@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int distanceBetweenBusStops(vector<int>& distance, int start, int destination) {
+        
+        // ensure start < destination for easy calculation
+        if (start > destination) 
+            swap(start, destination);
+
+        int clockwise = 0;
+        int total = 0;
+
+        // compute total distance
+        for (int d : distance)
+            total += d;
+
+        // compute clockwise distance (start → destination)
+        for (int i = start; i < destination; i++)
+            clockwise += distance[i];
+
+        // counter-clockwise distance
+        int anticlockwise = total - clockwise;
+
+        return min(clockwise, anticlockwise);
+    }
+};
