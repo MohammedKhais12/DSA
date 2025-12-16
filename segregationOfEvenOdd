@@ -1,0 +1,44 @@
+// User function template for C++
+
+/*
+struct Node
+{
+    int data;
+    struct Node* next;
+
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};
+*/
+class Solution {
+  public:
+    Node* divide(Node* head) {
+        // code here
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
+        
+        Node* temp = head;
+        Node* newHead = new Node(0);
+        Node* newTemp = newHead;
+        
+        while(temp!=NULL){
+            if(temp->data%2==0){
+                newTemp->next = new Node(temp->data);
+                newTemp = newTemp->next;
+            }
+            temp = temp->next;
+        }
+        temp = head;
+        while(temp!=NULL){
+            if(temp->data%2!=0){
+                newTemp->next = new Node(temp->data);
+                newTemp = newTemp->next;
+            }
+            temp = temp->next;
+        }
+        return newHead->next;
+    }
+};
