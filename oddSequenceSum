@@ -1,0 +1,41 @@
+class Solution {
+  public:
+    // Function to find maximum odd subsequence sum.
+    int findMaxOddSum(vector<int> &arr) {
+        int total_sum = 0;
+        int min_pos_odd = INT_MAX;
+        int max_neg_odd = INT_MIN;
+
+        for (int x : arr) {
+            if (x > 0) {
+                total_sum += x;
+                if (x % 2 != 0) {
+                    min_pos_odd = min(min_pos_odd, x);
+                }
+            } else {
+                if (x % 2 != 0) {
+                    max_neg_odd = max(max_neg_odd, x);
+                }
+            }
+        }
+
+        // If total sum is already odd, return it
+        if (total_sum % 2 != 0) {
+            return total_sum;
+        }
+
+        int ans = -1;
+
+        // Option 1: remove smallest positive odd
+        if (min_pos_odd != INT_MAX) {
+            ans = max(ans, total_sum - min_pos_odd);
+        }
+
+        // Option 2: add largest negative odd
+        if (max_neg_odd != INT_MIN) {
+            ans = max(ans, total_sum + max_neg_odd);
+        }
+
+        return ans;
+    }
+};
