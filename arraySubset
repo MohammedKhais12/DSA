@@ -1,0 +1,55 @@
+// class Solution {
+//   public:
+//     // Function to check if b is a subset of a
+//     bool isSubset(vector<int> &a, vector<int> &b) {
+//         // Your code here
+//         sort(a.begin(), a.end());
+//         sort(b.begin(), b.end());
+//         int x = 0;
+//         int y = 0;
+//         int c = 0;
+//         int lastB = b[b.size()-1];
+        
+//         for(int i=0; i<a.size(); i++){
+//             if(a[x]==b[y]){
+//                 c++;
+//                 x++;
+//                 y++;
+//                 if(c==b.size() && b[y]==lastB){
+//                     return true;
+//                     break;
+//                 }
+//             }
+//             else if(a[x]<b[y]){
+//                 x++;
+//             }
+//             else{
+//                 return false;
+//                 break;
+//             }
+//         }
+//     }
+// };
+class Solution {
+  public:
+    // Function to check if b is a subset of a
+    bool isSubset(vector<int> &a, vector<int> &b) {
+        sort(a.begin(), a.end());
+        sort(b.begin(), b.end());
+        
+        int j = 0; // pointer for b
+        
+        for (int i = 0; i < a.size() && j < b.size(); i++) {
+            if (a[i] == b[j]) {
+                j++; // move in b if match found
+            }
+            else if (a[i] > b[j]) {
+                // b[j] not found in a
+                return false;
+            }
+        }
+        
+        // if we matched all elements of b, then it's a subset
+        return (j == b.size());
+    }
+};
