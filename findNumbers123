@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> findNumbers(vector<int>& arr) {
+        vector<int> result;
+
+        for (int num : arr) {
+            int x = num;
+            bool valid = true;
+
+            // Check each digit
+            while (x > 0) {
+                int digit = x % 10;
+                if (digit != 1 && digit != 2 && digit != 3) {
+                    valid = false;
+                    break;
+                }
+                x /= 10;
+            }
+
+            if (valid) {
+                result.push_back(num);
+            }
+        }
+
+        // If no valid number found
+        if (result.empty()) {
+            return {-1};
+        }
+
+        return result;
+    }
+};
