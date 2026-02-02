@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    int summation(int n){
+        int k;
+        int m = n;
+        int add = 0;
+        while(m!=0){
+           k = m%10;
+        //   add *= 10;
+           add += k;
+           m /= 10;
+           summation(m);
+        }
+        return add;
+        
+    }
+    int sumOfDigits(int n) {
+        // Code here
+        int sum; 
+        sum = summation(n);
+        return sum;
+    }
+};
