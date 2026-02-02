@@ -1,0 +1,15 @@
+class Solution {
+  public:
+  void print(int j, int x){
+      if(j>x){
+          return ;
+      }
+      cout<<j<<" ";
+      print(j+1, x);
+  }
+    void printNos(int n) {
+        // Code here
+        int i = 1; 
+        print(i, n);
+    }
+};
