@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isArmstrong(int n) {
+        if(n==0){
+            return true;
+        }
+        vector<int> vec;
+        long num = n;
+        int digit;
+        int count = 0;
+        long finalNum = 0;
+        while(num!=0){
+            digit = num%10;
+            vec.push_back(digit);
+            count++;
+            num /=10;
+        }
+        for(int i=0; i<vec.size(); i++){
+            finalNum += (long)pow(vec[i], count);
+        }
+        if(n == finalNum){
+            return true;
+        }
+        return false;
+    }
+};
