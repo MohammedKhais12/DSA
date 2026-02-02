@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    bool isPalindrome(int n) {
+        // code here.
+        if(n<9 && n>0){
+            return true;
+        }
+        long newX = 0;
+        long digit;
+        int num = n;
+        while(num!=0){
+            digit = num%10;
+            newX = (newX*10) + digit;
+            num /= 10;
+        }
+        if(newX == n){
+            return true;
+        }
+        return false;
+    }
+};
