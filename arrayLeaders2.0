@@ -1,0 +1,19 @@
+
+
+class Solution {
+  public:
+    vector<int> leaders(vector<int>& arr) {
+        // code here
+        vector<int> vec;
+        int largest = INT_MIN;
+        
+        for(int i = arr.size()-1; i>=0; i--){
+            if(arr[i]>=largest){
+                largest = arr[i];
+                vec.push_back(largest);
+            }
+        }
+        reverse(vec.begin(), vec.end());
+        return vec;
+    }
+};
