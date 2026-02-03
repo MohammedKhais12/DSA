@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    int missingNum(vector<int>& arr) {
+        // code here
+        int sizee = arr.size();
+        int sum=0;
+        int actsum = 0;
+        for(int i =1; i<=sizee+1; i++){
+            sum += i;
+        }
+        for(int i =0; i<sizee; i++){
+            actsum += arr[i];
+        }
+        return sum-actsum; 
+    }
+};
