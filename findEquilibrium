@@ -1,23 +1,21 @@
 class Solution {
-  public:
-    // Function to find equilibrium point in the array.
+public:
     int findEquilibrium(vector<int> &arr) {
-        // code here
-        int rSum = 0;
-        int lSum = 0;
         
-        for(int i =0; i<arr.size(); i++){
-            rSum += arr[i];
+        int rightSum = accumulate(arr.begin(), arr.end(), 0);
+        int leftSum = 0;
+
+        for(int i = 0; i < arr.size(); i++){
+            
+            rightSum -= arr[i];   // remove current element
+            
+            if(leftSum == rightSum){
+                return i;
+            }
+
+            leftSum += arr[i];    // add to left side
         }
-        for(int i=0; i<arr.size(); i++){
-            rSum -= arr[i];  // now totalSum is right sum
-            
-            if (lSum == rSum)
-                return i;  // equilibrium index found
-            
-            lSum += arr[i];
-            
-        }
+
         return -1;
     }
 };
