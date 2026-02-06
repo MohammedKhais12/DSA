@@ -1,0 +1,36 @@
+class Solution {
+  public:
+    vector<int> findTwoElement(vector<int>& arr) {
+        
+        unordered_map<int, int> map;
+        int sum = 0;
+        int total = 0;
+        int n = arr.size();
+        
+        // Expected sum
+        for(int i = 1; i <= n; i++){
+            total += i;
+        }
+        
+        // Actual sum + frequency
+        for(auto i : arr){
+            map[i]++;
+            sum += i;
+        }
+        
+        int diff = total - sum;  // M - R
+        int repeating = 0;
+        
+        for(auto i : map){
+            if(i.second > 1){
+                repeating = i.first;
+                break;
+            }
+        }
+        
+        int missing = diff + repeating;
+        
+        return {repeating, missing};
+    }
+};
+
