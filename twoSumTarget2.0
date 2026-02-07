@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    bool twoSum(vector<int>& arr, int target) {
+        // code here
+        sort(arr.begin(), arr.end());
+        int a = 0;
+        int b = arr.size()-1;
+        int sum;
+        
+        while(a<b){
+            sum = arr[a]+arr[b];
+            if(sum == target){
+                return true;
+            }
+            else if(sum>target){
+                b--;
+            }
+            else{
+                a++;
+            }
+        }
+        return false;
+    }
+};
