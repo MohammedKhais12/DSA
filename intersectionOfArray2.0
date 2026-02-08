@@ -1,0 +1,18 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        unordered_set <int> s(nums1.begin(), nums1.end());
+        unordered_map <int, int> map2;
+        vector<int> vec;
+
+        for(int i=0; i<nums2.size(); i++){
+            map2[nums2[i]]++;
+        }
+        for(auto i : map1){
+            if(s.find(i)!=s.end()){
+                vec.push_back(i);
+            }
+        }
+        return vec;
+    }
+};
