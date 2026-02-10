@@ -1,0 +1,33 @@
+class Solution {
+  public:
+    vector<vector<int>> getPairs(vector<int>& arr) {
+
+        unordered_map<int,int> mp;
+        vector<vector<int>> ans;
+
+        for(int num : arr) {
+            mp[num]++;
+        }
+
+        for(auto &it : mp) {
+            int num = it.first;
+
+            if(num > 0) continue;   // handle only negative side
+
+            if(mp.find(-num) != mp.end()) {
+
+                if(num == 0) {
+                    if(mp[num] > 1)
+                        ans.push_back({0,0});
+                }
+                else {
+                    ans.push_back({num, -num});
+                }
+            }
+        }
+
+        sort(ans.begin(), ans.end());
+
+        return ans;
+    }
+};
