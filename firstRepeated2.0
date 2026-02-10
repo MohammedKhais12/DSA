@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    int firstRepeated(vector<int> &arr) {
+        unordered_map<int,int> freq;
+
+        // count frequency of each element
+        for (int x : arr) {
+            freq[x]++;
+        }
+
+        // find the first index (1-based) of an element with freq > 1
+        for (int i = 0; i < arr.size(); i++) {
+            if (freq[arr[i]] > 1) {
+                return i + 1;   // return position, not value
+            }
+        }
+        return -1; // if no element repeats
+    }
+};
