@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    int specialIntegers(int n, vector<int> &arr) {
+        unordered_set<int> s(arr.begin(), arr.end());
+        vector<int> vec(s.begin(), s.end());// store unique values
+        sort(vec.begin(), vec.end());
+        
+        int num = 0;
+        
+        if(vec.size()>=3){
+        for(int i=1; i<vec.size()-1; i++){
+            if(vec[i] == vec[i-1]+1 && vec[i]==vec[i+1]-1){
+                num++;
+            }
+        }
+    }
+        return num;
+    }
+};
