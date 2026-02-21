@@ -1,0 +1,17 @@
+class Solution {
+  public:
+
+    string removeDups(string &s) {
+        unordered_map<char, int> mapp;
+        string str = "";
+        
+        for(int i = 0; i < s.size(); i++){
+            if(mapp[s[i]] == 0){   // first time seeing this char
+                str += s[i];       // add to result
+                mapp[s[i]]++;      // mark as visited
+            }
+        }
+        
+        return str;
+    }
+};
