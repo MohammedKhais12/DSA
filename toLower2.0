@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    string toLower(string& s) {
+        // code here
+        string str = "";
+        for(auto i : s){
+            if(i>='A' && i<='Z'){
+                str += i + 32;
+            }
+            else{
+                str += i;
+            }
+        }
+        return str;
+    }
+};
