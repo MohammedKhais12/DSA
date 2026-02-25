@@ -1,0 +1,25 @@
+class Solution {
+  public:
+    string concatenatedString(string s1, string s2) {
+        unordered_set<char> set1(s1.begin(), s1.end());
+        unordered_set<char> set2(s2.begin(), s2.end());
+        
+        string result = "";
+        
+        // Characters in s1 not in s2
+        for(char ch : s1) {
+            if(set2.find(ch) == set2.end()) {
+                result += ch;
+            }
+        }
+        
+        // Characters in s2 not in s1
+        for(char ch : s2) {
+            if(set1.find(ch) == set1.end()) {
+                result += ch;
+            }
+        }
+        
+        return result;
+    }
+};
