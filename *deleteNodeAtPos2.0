@@ -1,0 +1,40 @@
+/*
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int data) {
+        this->data = data;
+        this->next = nullptr;
+    }
+};
+*/
+class Solution {
+  public:
+    Node* deleteNode(Node* head, int x) {
+        // code here
+        Node* temp = head;
+        int count = 1;
+        Node* prev = NULL;
+        if(head==NULL){
+            return head;
+        }
+        if(x==1){
+            Node* temp1 = head;
+            head = head->next;
+            free(temp1);
+            return head;
+        }
+        while(temp!=NULL){
+            if(count==x){
+                prev->next = prev->next->next;
+                break;
+            }
+            count++;
+            prev = temp;
+            temp = temp->next;
+        }
+        return head;
+    }
+};
