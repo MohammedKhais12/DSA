@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        unordered_map <char, int> map1;
+        unordered_map <char, int>  map2;
+        int count =0;
+        if(magazine.length()<ransomNote.length()){
+            return false;
+        }
+        else if(magazine==ransomNote){
+            return true;
+        }
+        for(int i = 0; i<magazine.length(); i++){
+            map1[magazine[i]]++;
+        }
+        for(int i = 0; i<ransomNote.length(); i++){
+            if(map1[ransomNote[i]]!=0){
+                map1[ransomNote[i]]--;
+                count++;
+            }
+        }
+        if(count==ransomNote.length()){
+            return true;
+        }
+        return false;
+    }
+};
