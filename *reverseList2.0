@@ -1,0 +1,35 @@
+/*
+class Node {
+ public:
+    int data ;
+    Node *next ;
+
+    Node(int x) {
+        data = x ;
+        next = NULL ;
+    }
+};
+*/
+
+class Solution {
+  public:
+    Node* reverseList(Node* head) {
+        // code here
+        vector <int> vec;
+        Node* temp1 = head;
+        
+        while(temp1!=NULL){
+            vec.push_back(temp1->data);
+            temp1 = temp1->next;
+        }
+        Node* newNode = new Node(0);
+        Node* temp2 = newNode;
+        
+        for(int i = vec.size()-1; i>=0; i--){
+            temp2->next = new Node(vec[i]);
+            temp2 = temp2->next;
+        }
+        
+        return newNode->next;
+    }
+};
