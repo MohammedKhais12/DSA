@@ -1,0 +1,51 @@
+class MyStack {
+    int count = 0;
+    queue<int>q;
+public:
+    MyStack() {
+        
+    }
+    
+    void push(int x) {
+        q.push(x);
+        count++;
+        for(int i= 0; i<count-1;i++){
+            int element = q.front();
+            q.push(element);
+            q.pop();
+        }
+        
+    }
+    
+    int pop() {
+        if(count==0){
+            return -1;
+        }
+        int element = q.front();
+        q.pop();
+        count--;
+       return element;
+        
+    }
+    
+    int top() {
+        if(count==0){
+            return -1;
+        }
+        return q.front();
+
+    }
+    
+    bool empty() {
+        return !count;
+    }
+};
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack* obj = new MyStack();
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * int param_3 = obj->top();
+ * bool param_4 = obj->empty();
+ */
