@@ -1,0 +1,31 @@
+/* The structure of the class is
+class StackQueue{
+private:
+    // These are STL stacks ( http://goo.gl/LxlRZQ )
+    stack<int> s1;
+    stack<int> s2;
+public:
+    void push(int);
+    int pop();
+}; */
+void StackQueue::push(int B) {
+    while(s1.size()){
+        s2.push(s1.top());
+        s1.pop();
+    }
+    s1.push(B);
+    while(s2.size()){
+        s1.push(s2.top());
+        s2.pop();
+    }
+}
+
+int StackQueue::pop() {
+    if(s1.size()==0){
+        return -1;
+    }
+    int ele = s1.top();
+    s1.pop();
+    return ele;
+    
+}
