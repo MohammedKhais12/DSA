@@ -1,0 +1,12 @@
+Queue Push & Pop
+Difficulty: BasicAccuracy: 74.53%Submissions: 27K+Points: 1
+Given an array arr[] , enqueue the elements of the array into a queue and then dequeue them.
+
+Example 1:
+
+Input: arr[] = [1, 2, 3, 4, 5] 
+Output: [1, 2, 3, 4, 5] 
+Input: arr[] = [1, 6, 43, 1, 2, 0, 5]
+Output: [1, 6, 43, 1, 2, 0, 5]
+Constraints:
+1<=arr[i]<=103
