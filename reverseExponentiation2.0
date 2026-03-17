@@ -1,0 +1,28 @@
+class Solution {
+  public:
+  
+    // Recursive power function: (base^exp)
+    int power(int base, int exp){
+        // Base case
+        if(exp == 0)
+            return 1;
+        
+        // Recursive case
+        return base * power(base, exp - 1);
+    }
+    
+    // Recursive reverse function
+    int reverse(int n, int rev = 0){
+        // Base case
+        if(n == 0)
+            return rev;
+        
+        // Recursive step
+        return reverse(n / 10, rev * 10 + (n % 10));
+    }
+    
+    int reverseExponentiation(int n) {
+        int x = reverse(n);        // reverse of n
+        return power(n, x);        // n^reverse(n)
+    }
+};
