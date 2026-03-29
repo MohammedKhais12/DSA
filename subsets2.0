@@ -1,0 +1,27 @@
+class Solution {
+  public:
+    void allSubSets(vector<int>& arr, vector<int>& ans, int i, vector<vector<int>>& res) {
+        // Base case
+        if(i == arr.size()){
+            res.push_back(ans);   // store subset
+            return;
+        }
+
+        // Include element
+        ans.push_back(arr[i]);
+        allSubSets(arr, ans, i + 1, res);
+
+        // Backtrack
+        ans.pop_back();
+
+        // Exclude element
+        allSubSets(arr, ans, i + 1, res);
+    }
+
+    vector<vector<int>> subsets(vector<int>& arr) {
+        vector<vector<int>> res;
+        vector<int> ans;
+        allSubSets(arr, ans, 0, res);
+        return res;
+    }
+};
