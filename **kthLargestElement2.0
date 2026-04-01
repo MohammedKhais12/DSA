@@ -1,0 +1,34 @@
+/*The Node structure is defined as
+struct Node {
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+// return the Kth largest element in the given BST rooted at 'root'
+class Solution {
+  public:
+    void store(Node* root, vector<int> &arr){
+        if(root == NULL){
+            return ;
+        }
+        store(root->left, arr);
+        arr.push_back(root->data);
+        store(root->right,arr);
+        
+    }
+    int kthLargest(Node *root, int k) {
+        // Your code here
+        vector<int> arr;
+        store(root, arr);
+        sort(arr.begin(), arr.end(), greater<int>());
+        return arr[k-1];
+        
+    }
+};
