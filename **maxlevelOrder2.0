@@ -1,0 +1,41 @@
+class Solution {
+  public:
+    int maxLevelSum(Node* root) {
+        
+        if(root == NULL) return 0;
+
+        queue<Node*> q;
+        int maxi;
+        int sum = 0;
+        
+        q.push(root);
+        q.push(NULL);
+        
+        maxi = INT_MIN;
+        
+        while(!q.empty()){
+            Node* a = q.front();
+            q.pop();
+            
+            if(a == NULL){
+                maxi = max(maxi, sum);
+                sum = 0;
+                
+                if(!q.empty()){
+                    q.push(NULL);
+                }
+            }
+            else{
+                sum += a->data;
+
+                if(a->left != NULL){
+                    q.push(a->left);
+                }
+                if(a->right != NULL){
+                    q.push(a->right);
+                }
+            }
+        }
+        return maxi;
+    }
+};
