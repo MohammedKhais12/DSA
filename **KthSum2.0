@@ -1,0 +1,37 @@
+// User function Template for C++
+
+/*
+struct Node {
+    int data;
+    Node* right;
+    Node* left;
+
+    Node(int x){
+        data = x;
+        right = NULL;
+        left = NULL;
+    }
+};
+*/
+
+// Function to find ceil of a given input in BST. If input is more
+// than the max key in BST, return -1
+void targetSum(Node* root, int &k, int &target){
+    if(root==NULL || k==0){
+        return ;
+    }
+    targetSum(root->left, k, target);
+    if(k>0){
+        target += root->data;
+        k--;
+    }
+    targetSum(root->right, k, target);
+}
+int sum(Node* root, int k) {
+    int target = 0;
+    targetSum(root, k, target);
+    return target;
+    
+    // Your code here
+    
+}
