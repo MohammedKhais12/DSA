@@ -1,0 +1,38 @@
+class Solution {
+  public:
+
+    bool leftCheck(Node* root, int key) {
+        if (root == NULL) return false;
+
+        if (root->data == key) return true;
+
+        // IMPORTANT: check both sides using BST rule
+        if (key < root->data)
+            return leftCheck(root->left, key);
+        else
+            return leftCheck(root->right, key);
+    }
+
+    bool rightCheck(Node* root, int key) {
+        if (root == NULL) return false;
+
+        if (root->data == key) return true;
+
+        // ALSO handle both directions
+        if (key < root->data)
+            return rightCheck(root->left, key);
+        else
+            return rightCheck(root->right, key);
+    }
+
+    bool search(Node* root, int key) {
+        if (root == NULL) return false;
+
+        if (root->data == key) return true;
+
+        if (key < root->data)
+            return leftCheck(root->left, key);
+        else
+            return rightCheck(root->right, key);
+    }
+};
