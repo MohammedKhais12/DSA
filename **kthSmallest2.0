@@ -1,0 +1,36 @@
+/*
+class Node {
+  public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+    void travel(Node *root, vector<int> &vec){
+        if(root == NULL){
+            return;
+        }
+        travel(root->left, vec);
+        vec.push_back(root->data);
+        travel(root->right, vec);
+    }
+    int kthSmallest(Node *root, int k) {
+        // code here
+        vector<int> vec;
+        travel(root, vec);
+        sort(vec.begin(), vec.end());
+        if(vec.size()<k){
+            return -1;
+        }
+        return vec[k-1];
+        
+    }
+};
