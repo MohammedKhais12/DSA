@@ -1,0 +1,60 @@
+/* Structure of linked list Node
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int x) {
+        data = x;
+        next = nullptr;
+    }
+};
+*/
+
+class Solution {
+  public:
+
+    Node* reverse(Node* head) {
+        Node* prev = NULL;
+        Node* curr = head;
+
+        while (curr != NULL) {
+            Node* nextNode = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+
+        return prev;
+    }
+
+    Node* addOne(Node* head) {
+
+        // Step 1: Reverse the linked list
+        head = reverse(head);
+
+        Node* temp = head;
+        int carry = 1;   // We need to add 1
+
+        // Step 2: Add one and handle carry
+        while (temp != NULL && carry) {
+
+            int sum = temp->data + carry;
+
+            temp->data = sum % 10;
+            carry = sum / 10;
+
+            // If we are at the last node and carry still exists
+            if (temp->next == NULL && carry) {
+                temp->next = new Node(0);
+            }
+
+            temp = temp->next;
+        }
+
+        // Step 3: Reverse the list back
+        head = reverse(head);
+
+        return head;
+    }
+};
