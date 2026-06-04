@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> selfDividingNumbers(int left, int right) {
+
+        vector<int> ans;
+
+        // Outer for loop
+        for (int i = left; i <= right; i++) {
+
+            int num = i;
+            bool selfDivide = true;
+
+            // Inner while loop to check digits
+            while (num > 0) {
+                int digit = num % 10;
+
+                // If digit is 0 or does not divide the number
+                if (digit == 0 || i % digit != 0) {
+                    selfDivide = false;
+                    break;
+                }
+
+                num = num / 10;
+            }
+
+            if (selfDivide)
+                ans.push_back(i);
+        }
+
+        return ans;
+    }
+};
