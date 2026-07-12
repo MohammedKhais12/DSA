@@ -1,0 +1,31 @@
+class Solution {
+  public:
+    const int mod = 1000000007;
+
+    long long power(long long x, long long n) {
+        long long ans = 1;
+
+        while (n > 0) {
+            if (n % 2 == 1)
+                ans = (ans * x) % mod;
+
+            x = (x * x) % mod;
+            n /= 2;
+        }
+
+        return ans;
+    }
+
+    int reverseExponentiation(int n) {
+
+        int rev = 0;
+        int temp = n;
+
+        while (temp > 0) {
+            rev = rev * 10 + temp % 10;
+            temp /= 10;
+        }
+
+        return power(n, rev);
+    }
+};
