@@ -1,0 +1,37 @@
+/* Structure of linked list Node
+class Node {
+public:
+    int data;
+    Node *next;
+    Node(int x) {
+        data = x;
+        next = nullptr;
+    }
+};*/
+class Solution {
+  public:
+    Node* removeDuplicates(Node* head) {
+        // code here
+        unordered_set<int> st;
+
+Node* dummy = new Node(0);
+Node* tail = dummy;
+
+Node* temp = head;
+
+while(temp){
+
+    if(st.find(temp->data)==st.end()){
+
+        st.insert(temp->data);
+
+        tail->next = new Node(temp->data);
+        tail = tail->next;
+    }
+
+    temp = temp->next;
+}
+
+return dummy->next;
+    }
+};
