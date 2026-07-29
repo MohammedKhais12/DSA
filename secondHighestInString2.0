@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int secondHighest(string s) {
+
+        int largest = INT_MIN;
+        int secondLargest = INT_MIN;
+
+        for (char ch : s) {
+
+            if (isdigit(ch)) {
+
+                int digit = ch - '0';
+
+                if (digit > largest) {
+                    secondLargest = largest;
+                    largest = digit;
+                }
+                else if (digit > secondLargest && digit < largest) {
+                    secondLargest = digit;
+                }
+            }
+        }
+
+        if (secondLargest == INT_MIN)
+            return -1;
+
+        return secondLargest;
+    }
+};
