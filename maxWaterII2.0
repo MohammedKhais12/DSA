@@ -1,0 +1,28 @@
+class Solution {
+  public:
+    int maxWater(vector<int> &arr) {
+        // code here
+        if(arr.size()<2){
+            return 0;
+        }
+        int h, w;
+        int i = 0;
+        int j = arr.size()-1;
+        int maxWater = INT_MIN;
+        int currWater;
+        
+        while(i<j){
+            w = j-i;
+            h = min(arr[i], arr[j]);
+            currWater = h*w;
+            maxWater = max(maxWater, currWater);
+            if(arr[i]<arr[j]){
+                i++;
+            }
+            else{
+                j--;
+            }
+        }
+        return maxWater;
+    }
+};
