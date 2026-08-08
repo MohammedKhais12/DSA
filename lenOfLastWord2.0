@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int n = s.size();
+        int count = 0;
+        bool check = true;
+
+        for(int i = n - 1; i >= 0; i--) {
+
+            // Skip spaces at the end
+            if(check && s[i] == ' ') {
+                continue;
+            }
+
+            // We found a character of the last word
+            if(isalpha(s[i])) {
+                count++;
+                check = false;
+            }
+
+            // Last word is finished
+            if(!check && s[i] == ' ') {
+                return count;
+            }
+        }
+
+        return count;
+    }
+};
