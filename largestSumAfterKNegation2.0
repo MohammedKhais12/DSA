@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int largestSumAfterKNegations(vector<int>& nums, int k) {
+
+        sort(nums.begin(), nums.end());
+
+        // Convert negative numbers to positive
+        for(int i = 0; i < nums.size() && k > 0; i++) {
+
+            if(nums[i] < 0) {
+                nums[i] = abs(nums[i]);
+                k--;
+            }
+        }
+
+        // Find the smallest value
+        sort(nums.begin(), nums.end());
+
+        // If odd number of operations remain,
+        // flip the smallest value
+        if(k % 2 == 1) {
+            nums[0] = -nums[0];
+        }
+
+        int sum = 0;
+
+        for(int i = 0; i < nums.size(); i++) {
+            sum += nums[i];
+        }
+
+        return sum;
+    }
+};
