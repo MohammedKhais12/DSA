@@ -1,0 +1,52 @@
+class Solution {
+public:
+    bool validPalindrome(string s) {
+        int count = 1;
+        int i = 0;
+        int j = s.size() - 1;
+
+        while (i < j) {
+            if (s[i] != s[j] && count != 0) {
+                
+                // Remove left character
+                int x = i + 1;
+                int y = j;
+                bool left = true;
+
+                while (x < y) {
+                    if (s[x] != s[y]) {
+                        left = false;
+                        break;
+                    }
+                    x++;
+                    y--;
+                }
+
+                // Remove right character
+                x = i;
+                y = j - 1;
+                bool right = true;
+
+                while (x < y) {
+                    if (s[x] != s[y]) {
+                        right = false;
+                        break;
+                    }
+                    x++;
+                    y--;
+                }
+
+                return left || right;
+            }
+            else if (s[i] == s[j]) {
+                i++;
+                j--;
+            }
+            else {
+                return false;
+            }
+        }
+
+        return true;
+    }
+};
