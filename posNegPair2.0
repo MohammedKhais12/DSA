@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<int> posNegPair(vector<int> &arr) {
+        
+        vector<int> vec;
+        unordered_map<int, int> mp;
+
+        // Store frequency of every element
+        for (int x : arr) {
+            mp[x]++;
+        }
+
+        // Traverse in original order
+        for (int x : arr) {
+
+            // Ignore 0
+            if (x == 0)
+                continue;
+
+            // Both x and -x are available
+            if (mp[x] > 0 && mp[-x] > 0) {
+
+                vec.push_back(x);
+                vec.push_back(-x);
+
+                // Use these two occurrences
+                mp[x]--;
+                mp[-x]--;
+            }
+        }
+
+        return vec;
+    }
+};
