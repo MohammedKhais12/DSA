@@ -1,0 +1,18 @@
+class Solution {
+  public:
+    vector<int> remDuplicate(vector<int>& arr) {
+        // code here
+        vector<int> vec;
+        unordered_map<int,int> mp;
+        for(int x: arr){
+            mp[x]++;
+        }
+        for(int x:arr){
+            if(mp[x]>0){
+                vec.push_back(x);
+                mp[x] = 0;
+            }
+        }
+        return vec;
+    }
+};
