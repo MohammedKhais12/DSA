@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    int uniqueElement(vector<int>& arr, int k) {
+        // code here
+        unordered_map<int, int> mp;
+        for(int r: arr){
+            mp[r]++;
+        }
+        for(auto x : mp){
+            if(x.second!=k){
+                return x.first;
+            }
+        }
+        return -1;
+    }
+};
