@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> fairCandySwap(vector<int>& aliceSizes, vector<int>& bobSizes) {
+
+        unordered_map<int, int> bobMap;
+
+        int aliceSum = 0;
+        int bobSum = 0;
+
+        for (int x : aliceSizes) {
+            aliceSum += x;
+        }
+
+        for (int x : bobSizes) {
+            bobSum += x;
+            bobMap[x]++;
+        }
+
+        int diff = (aliceSum - bobSum) / 2;
+
+        for (int x : aliceSizes) {
+
+            int need = x - diff;
+
+            if (bobMap.find(need) != bobMap.end()) {
+                return {x, need};
+            }
+        }
+
+        return {};
+    }
+};
