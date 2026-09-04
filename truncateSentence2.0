@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string truncateSentence(string s, int k) {
+        
+        string word = "";
+        string ans = "";
+        
+        for(int i = 0; i < s.size(); i++) {
+            
+            if(s[i] == ' ') {
+                ans += word;
+                ans += ' ';
+                
+                word = "";
+                k--;
+                
+                if(k == 0)
+                    return ans.substr(0, ans.size() - 1);
+            }
+            else {
+                word += s[i];
+            }
+        }
+        
+        // Add the last word
+        ans += word;
+        
+        return ans;
+    }
+};
