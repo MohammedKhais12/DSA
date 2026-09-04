@@ -1,0 +1,25 @@
+
+class Solution {
+  public:
+    void solve(vector<int>& vec, int x) {
+
+        vec.push_back(x);
+
+        if(x <= 0) {
+            return;
+        }
+
+        solve(vec, x - 5);
+
+        vec.push_back(x);
+    }
+
+    vector<int> pattern(int n) {
+        vector<int> vec;
+
+        solve(vec, n);
+
+        return vec;
+    }
+};
+
