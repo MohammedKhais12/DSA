@@ -1,0 +1,25 @@
+class Solution {
+  public:
+    void digits(vector<int> &vec, int curr, int last, int n){
+        if(to_string(curr).size()==n){
+            vec.push_back(curr);
+            return;
+        }
+        for(int digit = last+1;digit<=9; digit++){
+            digits(vec, curr*10+digit, digit, n);
+        }
+    }
+    vector<int> increasingNumbers(int n) {
+        // code here
+        vector<int> vec;
+        if(n==1){
+            vec.push_back(0);
+        }
+        int prev = 1;
+        int curr = 0;
+        for(int digit =1; digit<=9; digit++){
+            digits(vec, digit, digit, n);
+        }
+        return vec;
+    }
+};
