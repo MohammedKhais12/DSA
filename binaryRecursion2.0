@@ -1,0 +1,26 @@
+class Solution {
+public:
+    void binary(vector<string> &vec, string &str, int n){
+        if(str.size()==n){
+            vec.push_back(str);
+            return;
+            
+        }
+        str.push_back('0');
+        binary(vec, str, n);
+        str.pop_back();
+        if(str.empty() || str.back()!='1'){
+            str.push_back('1');
+            binary(vec, str, n);
+            str.pop_back();
+        }
+    }
+    vector<string> generateBinaryStrings(int n) {
+        // Your code goes here
+        vector<string> vec;
+        string str = "";
+        binary(vec, str, n);
+
+        return vec;
+    }
+};
