@@ -1,0 +1,25 @@
+class Solution {
+  public:
+    void subset(vector<int> &vec, vector<int> &arr, int &sum, int i, int n){
+        if(i==n){
+            vec.push_back(sum);
+            return;
+        }
+        sum += arr[i];
+        subset(vec, arr, sum, i+1, n);
+        
+        sum-= arr[i];
+        subset(vec, arr, sum, i+1, n);
+    }
+    vector<int> subsetSums(vector<int>& arr) {
+        // code here
+        vector<int> vec;
+        int n = arr.size();
+        int i = 0;
+        int sum = 0;
+        
+        subset(vec, arr, sum, i, n);
+        sort(vec.begin(), vec.end());
+        return vec;
+    }
+};
