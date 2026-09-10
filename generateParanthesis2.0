@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void generate(vector<string> &vec, string str, int open, int close, int n){
+        if(str.size()==2*n){
+            vec.push_back(str);
+            return;
+        }
+
+        if(open<n){
+            generate(vec, str+'(', open+1, close, n);
+        }
+        if(close<open){
+        generate(vec,  str+')',open, close+1, n);
+        }
+    }
+    vector<string> generateParenthesis(int n) {
+        vector<string> vec;
+        generate(vec, "",0, 0, n);
+
+        return vec;
+    }
+};
