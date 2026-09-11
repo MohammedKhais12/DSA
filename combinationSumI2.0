@@ -1,0 +1,38 @@
+class Solution {
+public:
+    void combine(vector<int>& candidates, vector<vector<int>>& vec,
+                 int target, int idx, int sum, vector<int> arr) {
+
+        if (idx == candidates.size()) {
+            if (sum == target) {
+                vec.push_back(arr);
+            }
+            return;
+        }
+
+        sum += candidates[idx];
+
+        if (sum <= target) {
+            arr.push_back(candidates[idx]);
+
+            // TAKE: same index → can reuse
+            combine(candidates, vec, target, idx, sum, arr);
+
+            arr.pop_back();
+        }
+
+        sum -= candidates[idx];
+
+        // SKIP: move to next index
+        combine(candidates, vec, target, idx + 1, sum, arr);
+    }
+
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> vec;
+        vector<int> arr;
+
+        combine(candidates, vec, target, 0, 0, arr);
+
+        return vec;
+    }
+};
