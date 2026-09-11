@@ -1,0 +1,47 @@
+class Solution {
+public:
+    void combine(vector<int>& candidates,
+                 vector<vector<int>>& vec,
+                 int target,
+                 int idx,
+                 int sum,
+                 vector<int>& arr) {
+
+        if (sum == target) {
+            vec.push_back(arr);
+            return;
+        }
+
+        for (int i = idx; i < candidates.size(); i++) {
+
+            // Skip duplicates at the same recursion level
+            if (i > idx && candidates[i] == candidates[i - 1])
+                continue;
+
+            // Since candidates is sorted
+            if (sum + candidates[i] > target)
+                break;
+
+            arr.push_back(candidates[i]);
+
+            // i + 1 → each element can be used only once
+            combine(candidates, vec, target, i + 1,
+                    sum + candidates[i], arr);
+
+            arr.pop_back();
+        }
+    }
+
+    vector<vector<int>> combinationSum2(vector<int>& candidates,
+                                         int target) {
+
+        vector<vector<int>> vec;
+        vector<int> arr;
+
+        sort(candidates.begin(), candidates.end());
+
+        combine(candidates, vec, target, 0, 0, arr);
+
+        return vec;
+    }
+};
