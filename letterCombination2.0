@@ -1,0 +1,44 @@
+class Solution {
+public:
+
+    void letter(vector<string>& vec,
+                string digits,
+                string combo[],
+                string arr,
+                int ind) {
+
+        if(ind == digits.size()) {
+            vec.push_back(arr);
+            return;
+        }
+
+        int digit = digits[ind] - '0';
+
+        for(int i = 0; i < combo[digit].size(); i++) {
+
+            letter(vec,
+                   digits,
+                   combo,
+                   arr + combo[digit][i],
+                   ind + 1);
+        }
+    }
+
+    vector<string> letterCombinations(string digits) {
+
+        if(digits.empty()) return {};
+
+        vector<string> vec;
+
+        string arr = "";
+
+        string combo[] = {
+            "", "", "abc", "def", "ghi",
+            "jkl", "mno", "pqrs", "tuv", "wxyz"
+        };
+
+        letter(vec, digits, combo, arr, 0);
+
+        return vec;
+    }
+};
