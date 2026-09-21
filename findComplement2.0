@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int findComplement(int num) {
+        long long count = 0;
+        long long pos = 1;
+        while(num!=0){
+            int k = num%2;
+            k = 1-k;
+            count += pos*k;
+            pos = pos * 2;
+            num = num>>1;
+        }
+        return count;
+    }
+};
