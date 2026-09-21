@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int hammingDistance(int x, int y) {
+        int add = x^y;
+        int count = 0;
+        while(add>0){
+            int k = add%2;
+            if(k == 1){
+                count++;
+            }
+            add/=2;
+        }
+        return count;
+    }
+};
