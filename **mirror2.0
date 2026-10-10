@@ -1,0 +1,28 @@
+/* Structure of Binary Tree Node
+class Node {
+  public:
+    int data;
+    Node *left;
+    Node *right;
+    Node(int val) {
+        data = val;
+        left = right = nullptr;
+    }
+};*/
+
+class Solution {
+  public:
+    Node* mir(Node* root){
+        if(root==NULL){
+            return NULL;
+        }
+        swap(root->left, root->right);
+        mir(root->left);
+        mir(root->right);
+        return root;
+    }
+    void mirror(Node* root) {
+        // code here
+        mir(root);
+    }
+};
