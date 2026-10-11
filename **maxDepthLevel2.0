@@ -1,0 +1,28 @@
+/* Tree Node Structure
+class Node {
+  public:
+    int data;
+    Node* left;
+    Node* right;
+    Node(int val) {
+        data = val;
+        left = right = nullptr;
+    }
+}; */
+
+class Solution {
+  public:
+    int maxl(Node* root){
+        if(root==NULL){
+            return 0;
+        }
+        
+        int l = maxl(root->left);
+        int r = maxl(root->right);
+        return max(l, r)+1;
+    }
+    int maxLevel(Node *root) {
+        // code here
+        return maxl(root);
+    }
+};
