@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int countSuffix(vector<int>& nums, vector<int>& target) {
+        int n = nums.size();
+        int ans = 0;
+
+        for(int i = 0; i < n; i++) {
+            vector<int> temp = nums;
+
+            sort(temp.begin() + i, temp.end(), greater<int>());
+
+            if(temp == target) {
+                ans++;
+            }
+        }
+
+        return ans;
+    }
+};
